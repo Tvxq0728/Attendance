@@ -29,16 +29,17 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required','email'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ];
     }
-    public function messages() {
-        return [
-            'email.required' => "メールアドレスは必須です。",
-            "password.required" => "パスワードは必須です。",
+    public function messages(){
+        return[
+        "email.required"=>"メールアドレスは必須です。",
+        "password.required"=>"パスワードは必須です。",
         ];
     }
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -54,7 +55,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => __('auth.failed'),
             ]);
         }
 

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-// フォームリスエスト追加
 use App\Http\Requests\UserRequest;
 
 class RegisteredUserController extends Controller
@@ -35,12 +34,6 @@ class RegisteredUserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        // ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -50,7 +43,6 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         // Auth::login($user);
-        // 上記記述で自動ログイン。
 
         return redirect("/login");
     }
